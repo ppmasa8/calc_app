@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,6 +30,17 @@ class TextField extends StatefulWidget {
 class _TextFiledState extends State<TextField> {
   String _expression = '1+1';
 
+  void _UpdateText(String letter) {
+    setState(() {
+      if (letter == '=' || letter == 'C')
+        _expression = '';
+      else if (letter == '<☓')
+        _expression = _expression.substring(0, _expression.length - 1);
+      else
+        _expression += letter;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -46,6 +58,12 @@ class _TextFiledState extends State<TextField> {
         )
     );
   }
+
+  static final controller = StreamController<String>();
+  @override
+  void initState() {
+    controller.stream.listen((event) => _UpdateText(event));
+  }
 }
 
 // Keyboard
@@ -56,7 +74,7 @@ class Keyboard extends StatelessWidget {
       flex: 2,
       child: Center(
         child: Container(
-          color: const Color(0x26b74093),
+          color: Colors.blue[200],
           child: GridView.count(
               crossAxisCount: 4,
               mainAxisSpacing: 3,
@@ -88,11 +106,16 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: TextButton(
-        onPressed: () {  },
+        onPressed: () {
+          _TextFiledState.controller.sink.add(_key);
+        },
         child: Center(
           child: Text(
             _key,
-            style: TextStyle(fontSize: 46)
+            style: TextStyle(
+                fontSize: 46,
+                color: Colors.white
+            ),
           ),
         ),
       ),

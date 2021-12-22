@@ -54,6 +54,9 @@ class Calculator {
     _list_operand.clear();
     _buffer = '';
 
-    return _result.toString();
+    if (_result == _result.toInt())
+      return _result.toInt().toString();
+    else
+      return _result.toString();
   }
 }

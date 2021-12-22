@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'calc.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,10 +33,20 @@ class _TextFiledState extends State<TextField> {
 
   void _UpdateText(String letter) {
     setState(() {
-      if (letter == '=' || letter == 'C')
+      if (letter == 'C') {
         _expression = '';
-      else if (letter == '<☓')
+      }
+      else if (letter == '<☓') {
         _expression = _expression.substring(0, _expression.length - 1);
+      }
+      else if (letter == '=') {
+        _expression = '';
+        var answer = Calculator.Execute();
+        controller.sink.add(answer);
+      }
+      else if (letter == 'e') {
+        _expression = 'Error';
+      }
       else
         _expression += letter;
     });
@@ -59,10 +70,11 @@ class _TextFiledState extends State<TextField> {
     );
   }
 
-  static final controller = StreamController<String>();
+  static final controller = StreamController.broadcast();
   @override
   void initState() {
     controller.stream.listen((event) => _UpdateText(event));
+    controller.stream.listen((event) => Calculator.GetKey(event));
   }
 }
 
@@ -80,7 +92,7 @@ class Keyboard extends StatelessWidget {
               mainAxisSpacing: 3,
               crossAxisSpacing: 3,
               children: [
-                'C', '%', '<☓', '÷',
+                'C', 'mod', '<☓', '÷',
                 '7', '8', '9', '×',
                 '4', '5', '6', '-',
                 '1', '2', '3', '+',

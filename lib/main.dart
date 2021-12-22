@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'calc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +30,7 @@ class TextField extends StatefulWidget {
 }
 
 class _TextFiledState extends State<TextField> {
-  String _expression = '1+1';
+  String _expression = '';
 
   void _UpdateText(String letter) {
     setState(() {
@@ -61,8 +62,8 @@ class _TextFiledState extends State<TextField> {
            alignment: Alignment.centerRight,
            child: Text(
              _expression,
-             style: TextStyle(
-               fontSize: 64.0
+             style: GoogleFonts.openSansCondensed(
+                 fontSize: 64.0
              ),
            ),
          ),
@@ -124,7 +125,7 @@ class Button extends StatelessWidget {
         child: Center(
           child: Text(
             _key,
-            style: TextStyle(
+            style: GoogleFonts.openSansCondensed(
                 fontSize: 46,
                 color: Colors.white
             ),

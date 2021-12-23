@@ -37,7 +37,7 @@ class _TextFiledState extends State<TextField> {
       if (letter == 'C') {
         _expression = '';
       }
-      else if (letter == '<☓') {
+      else if (letter == '◀') {
         if (_expression.substring(_expression.length - 1) == 'd')
           _expression = _expression.substring(0, _expression.length - 3);
         else
@@ -96,7 +96,7 @@ class Keyboard extends StatelessWidget {
               mainAxisSpacing: 3,
               crossAxisSpacing: 3,
               children: [
-                'C', 'mod', '<☓', '÷',
+                'C', 'mod', '◀', '÷',
                 '7', '8', '9', '×',
                 '4', '5', '6', '-',
                 '1', '2', '3', '+',
@@ -114,7 +114,7 @@ class Keyboard extends StatelessWidget {
 }
 
 // Button
-const symbol = ['+', '-', '×', '÷', 'mod', 'C', '=', '<☓'];
+const symbol = ['+', '-', '×', '÷', 'mod', 'C', '=', '◀'];
 class Button extends StatelessWidget {
   final _key;
   Button(this._key);
@@ -129,7 +129,7 @@ class Button extends StatelessWidget {
         child: Center(
           child: Text(
             _key,
-            style: GoogleFonts.openSansCondensed(
+            style: GoogleFonts.anaheim(
                 fontSize: 46,
                 color: symbol.contains(_key) ? Colors.cyan : Colors.black
             ),

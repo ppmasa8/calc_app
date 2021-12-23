@@ -38,7 +38,10 @@ class _TextFiledState extends State<TextField> {
         _expression = '';
       }
       else if (letter == '<☓') {
-        _expression = _expression.substring(0, _expression.length - 1);
+        if (_expression.substring(_expression.length - 1) == 'd')
+          _expression = _expression.substring(0, _expression.length - 3);
+        else
+          _expression = _expression.substring(0, _expression.length - 1);
       }
       else if (letter == '=') {
         _expression = '';

@@ -90,7 +90,7 @@ class Keyboard extends StatelessWidget {
       flex: 2,
       child: Center(
         child: Container(
-          color: Colors.blue[200],
+          color: Colors.cyan.shade50,
           child: GridView.count(
               crossAxisCount: 4,
               mainAxisSpacing: 3,
@@ -114,6 +114,7 @@ class Keyboard extends StatelessWidget {
 }
 
 // Button
+const symbol = ['+', '-', '×', '÷', 'mod', 'C', '=', '<☓'];
 class Button extends StatelessWidget {
   final _key;
   Button(this._key);
@@ -130,7 +131,7 @@ class Button extends StatelessWidget {
             _key,
             style: GoogleFonts.openSansCondensed(
                 fontSize: 46,
-                color: Colors.white
+                color: symbol.contains(_key) ? Colors.cyan : Colors.black
             ),
           ),
         ),

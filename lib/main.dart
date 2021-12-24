@@ -31,6 +31,8 @@ class TextField extends StatefulWidget {
 
 class _TextFiledState extends State<TextField> {
   String _expression = '';
+  final integer = RegExp(r'^[\d||.]*$');
+  final double  = RegExp(r'[.]');
 
   void _UpdateText(String letter) {
     setState(() {
@@ -45,8 +47,19 @@ class _TextFiledState extends State<TextField> {
       }
       else if (letter == '=') {
         _expression = '';
-        var answer = Calculator.Execute();
-        controller.sink.add(answer);
+        var result = Calculator.Execute();
+        //TODO Add commma conditions
+        // var answer = '';
+        // if (integer.hasMatch(result)) {
+        //   if (double.hasMatch(result)) {
+        //     answer = result;
+        //   } else {
+        //     answer = result.replaceAllMapped(reg, mathFunc);
+        //   }
+        // } else {
+        //   answer = result;
+        // }
+        controller.sink.add(result);
       }
       else if (letter == 'e') {
         _expression = 'Error';

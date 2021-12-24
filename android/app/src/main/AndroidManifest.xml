@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.calc_app">
    <application
-        android:label="calc_app"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Simple calculator"
+        android:icon="@mipmap/calculator_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

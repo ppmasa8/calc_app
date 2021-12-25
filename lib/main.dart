@@ -45,11 +45,15 @@ class _TextFiledState extends State<TextField> {
       } else if (letter == '=') {
         _expression = '';
         var result = Calculator.Execute();
-        //TODO Add commma conditions
         var answer = '';
         if (integer.hasMatch(result)) {
           if (result.contains('.')) {
-            answer = result;
+            var upper   = double.parse(result).floor();
+            var downer  = double.parse(result) - upper;
+            var uppers  = upper.toString();
+            var downers = downer.toString();
+            uppers = addComma(uppers);
+            answer = uppers + downers.substring(1, downers.length);
           } else {
             answer = addComma(result);
           }

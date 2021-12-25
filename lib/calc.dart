@@ -17,6 +17,11 @@ class Calculator {
       _buffer = '';
     } else if (letter == '=') {
       return null;
+    } else if (letter == '◀') {
+      if (_buffer == '')
+        _list_operand.removeLast();
+      else
+        _buffer = _buffer.substring(0, _buffer.length - 1);
     } else
       _buffer += letter;
   }

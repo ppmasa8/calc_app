@@ -32,7 +32,6 @@ class TextField extends StatefulWidget {
 class _TextFiledState extends State<TextField> {
   String _expression = '';
   final integer = RegExp(r'^[\d||.]*$');
-  final double  = RegExp(r'[.]');
 
   void _UpdateText(String letter) {
     setState(() {
@@ -49,17 +48,17 @@ class _TextFiledState extends State<TextField> {
         _expression = '';
         var result = Calculator.Execute();
         //TODO Add commma conditions
-        // var answer = '';
-        // if (integer.hasMatch(result)) {
-        //   if (double.hasMatch(result)) {
-        //     answer = result;
-        //   } else {
-        //     answer = result.replaceAllMapped(reg, mathFunc);
-        //   }
-        // } else {
-        //   answer = result;
-        // }
-        controller.sink.add(result);
+        var answer = '';
+        if (integer.hasMatch(result)) {
+          if (result.contains('.')) {
+            answer = result;
+          } else {
+            answer = addComma(result);
+          }
+        } else {
+          answer = result;
+        }
+        controller.sink.add(answer);
       }
       else if (letter == 'e') {
         _expression = 'Error';
@@ -67,6 +66,18 @@ class _TextFiledState extends State<TextField> {
       else
         _expression += letter;
     });
+  }
+
+  String addComma(String str) {
+    var arr = str.split('').reversed;
+    var res = [];
+    for (int i = 0; i < arr.length; i++) {
+      if (i % 3 == 0 && i != 0) {
+        res.add(",");
+      }
+      res.add(arr.elementAt(i));
+    }
+    return res.reversed.join();
   }
 
   @override

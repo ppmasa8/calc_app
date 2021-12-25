@@ -11,16 +11,13 @@ class Calculator {
       _list_operand.add(letter);
       _list_number.add(double.parse(_buffer));
       _buffer = '';
-    }
-    else if (letter == 'C') {
+    } else if (letter == 'C') {
       _list_number.clear();
       _list_operand.clear();
       _buffer = '';
-    }
-    else if (letter == '=') {
+    } else if (letter == '=') {
       return null;
-    }
-    else
+    } else
       _buffer += letter;
   }
 

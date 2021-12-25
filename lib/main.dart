@@ -37,8 +37,7 @@ class _TextFiledState extends State<TextField> {
     setState(() {
       if (letter == 'C') {
         _expression = '';
-      }
-      else if (letter == '◀') {
+      } else if (letter == '◀') {
         if (_expression.substring(_expression.length - 1) == 'd')
           _expression = _expression.substring(0, _expression.length - 3);
         else
@@ -59,11 +58,9 @@ class _TextFiledState extends State<TextField> {
           answer = result;
         }
         controller.sink.add(answer);
-      }
-      else if (letter == 'e') {
+      } else if (letter == 'e') {
         _expression = 'Error';
-      }
-      else
+      } else
         _expression += letter;
     });
   }

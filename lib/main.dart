@@ -42,8 +42,7 @@ class _TextFiledState extends State<TextField> {
           _expression = _expression.substring(0, _expression.length - 3);
         else
           _expression = _expression.substring(0, _expression.length - 1);
-      }
-      else if (letter == '=') {
+      } else if (letter == '=') {
         _expression = '';
         var result = Calculator.Execute();
         //TODO Add commma conditions

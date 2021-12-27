@@ -8,7 +8,6 @@ class Calculator {
   static var _buffer = '';
 
   static void GetKey(String letter) {
-    //TODO Fix backspace action.
     if (operand.contains(letter)) {
       _list_operand.add(letter);
       _list_number.add(double.parse(_buffer));

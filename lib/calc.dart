@@ -22,15 +22,37 @@ class Calculator {
     } else if (letter == '=') {
       return null;
     } else if (letter == '◀') {
-      var last = _list.removeLast();
+      var last = _list.elementAt(_list.length - 1);
       if (operand.contains(last)) {
+        _list.removeLast();
         _list_operand.removeLast();
+        _buffer = _list_number.removeLast().toString();
+        // print('===================${_list_number}');
+        // print('================buf====${_buffer}');
       } else {
-        _list_operand.removeLast();
+        _list.removeLast();
+        var revList = _list.reversed;
+        var str = '';
+        for (int i = 0; i < revList.length; i++) {
+          if (!operand.contains(revList.elementAt(i))) {
+            str += revList.elementAt(i);
+          } else {
+            str = str.split('').reversed.join('');
+            // print('===================${_list_number}');
+            // print('====================${str}');
+            if (str != '') {
+              _buffer = str;
+            }
+            // print('===================${_list_number}');
+            // print('??????????????????');
+            break;
+          }
+        }
       }
-    } else
+    } else {
       _buffer += letter;
       _list.add(letter);
+    }
   }
 
   static String Execute() {

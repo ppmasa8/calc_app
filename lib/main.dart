@@ -45,6 +45,7 @@ class _TextFiledState extends State<TextField> {
       } else if (letter == '=') {
         _expression = '';
         var result = Calculator.Execute();
+        // 計算結果にコンマをつける処理
         // var answer = '';
         // if (integer.hasMatch(result)) {
         //   if (result.contains('.')) {
@@ -66,6 +67,7 @@ class _TextFiledState extends State<TextField> {
         _expression = 'Error';
       } else {
         _expression += letter;
+        // 数字にコンマをつける処理
         // _expression = _expression.replaceAll(',', '');
         // var splitList     = _expression.split('');
         // var numAndOpSplit = [];

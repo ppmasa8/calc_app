@@ -45,60 +45,63 @@ class _TextFiledState extends State<TextField> {
       } else if (letter == '=') {
         _expression = '';
         var result = Calculator.Execute();
-        var answer = '';
-        if (integer.hasMatch(result)) {
-          if (result.contains('.')) {
-            var upper   = double.parse(result).floor();
-            var downer  = double.parse(result) - upper;
-            var uppers  = upper.toString();
-            var downers = downer.toString();
-            uppers = addComma(uppers);
-            answer = uppers + downers.substring(1, downers.length);
-          } else {
-            answer = addComma(result);
-          }
-        } else {
-          answer = result;
-        }
-        controller.sink.add(answer);
+        // var answer = '';
+        // if (integer.hasMatch(result)) {
+        //   if (result.contains('.')) {
+        //     var upper   = double.parse(result).floor();
+        //     var downer  = double.parse(result) - upper;
+        //     var uppers  = upper.toString();
+        //     var downers = downer.toString();
+        //     uppers = addComma(uppers);
+        //    このへんで小数の計算がおかしくなっていそう
+        //     answer = uppers + downers.substring(1, downers.length);
+        //   } else {
+        //     answer = addComma(result);
+        //   }
+        // } else {
+        //   answer = result;
+        // }
+        controller.sink.add(result);
       } else if (letter == 'e') {
         _expression = 'Error';
       } else {
         _expression += letter;
-        _expression = _expression.replaceAll(',', '');
-        var splitList     = _expression.split('');
-        var numAndOpSplit = [];
-        var resList = [];
-        var str = '';
-        splitList.forEach((element) {
-          if (operand.contains(element)) {
-            numAndOpSplit.add(str);
-            numAndOpSplit.add(element);
-            str = '';
-          } else {
-            str += element;
-          }
-        });
-        numAndOpSplit.add(str);
-
-        numAndOpSplit.forEach((element) {
-          if (operand.contains(element)) {
-            resList.add(element);
-          } else {
-            if (element.contains('.')) {
-              var upper   = double.parse(element).floor();
-              var downer  = double.parse(element) - upper;
-              var uppers  = upper.toString();
-              var downers = downer.toString();
-              uppers = addComma(uppers);
-              element = uppers + downers.substring(1, downers.length);
-            } else {
-              element = addComma(element);
-            }
-            resList.add(element);
-          }
-        });
-        _expression = resList.join();
+        // _expression = _expression.replaceAll(',', '');
+        // var splitList     = _expression.split('');
+        // var numAndOpSplit = [];
+        // var resList = [];
+        // var str = '';
+        // splitList.forEach((element) {
+        //   if (operand.contains(element)) {
+        //     numAndOpSplit.add(str);
+        //     numAndOpSplit.add(element);
+        //     str = '';
+        //   } else {
+        //     str += element;
+        //   }
+        // });
+        // numAndOpSplit.add(str);
+        //
+        // numAndOpSplit.forEach((element) {
+        //   if (operand.contains(element)) {
+        //     resList.add(element);
+        //   } else {
+        //     if (element.contains('.')) {
+        //       var upper   = double.parse(element).floor();
+        //       var downer  = double.parse(element) - upper;
+        //       var uppers  = upper.toString();
+        //       var downers = downer.toString();
+        //       uppers = addComma(uppers);
+        //    このへんで小数の計算がおかしくなっていそう
+        //       element = uppers + downers.substring(1, downers.length);
+        //     } else {
+        //       element = addComma(element);
+        //     }
+        //     resList.add(element);
+        //   }
+        // });
+        // _expression = resList.join();
+        // print('===================${_expression}');
       }
     });
   }

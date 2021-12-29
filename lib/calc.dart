@@ -27,8 +27,6 @@ class Calculator {
         _list.removeLast();
         _list_operand.removeLast();
         _buffer = _list_number.removeLast().toString();
-        // print('===================${_list_number}');
-        // print('================buf====${_buffer}');
       } else {
         _list.removeLast();
         var revList = _list.reversed;
@@ -37,18 +35,20 @@ class Calculator {
           if (!operand.contains(revList.elementAt(i))) {
             str += revList.elementAt(i);
           } else {
-            str = str.split('').reversed.join('');
-            // print('===================${_list_number}');
-            // print('====================${str}');
-            if (str != '') {
-              _buffer = str;
-            }
-            // print('===================${_list_number}');
-            // print('??????????????????');
             break;
           }
         }
+        str = str.split('').reversed.join('');
+        if (str != '') {
+          _buffer = str;
+        }
       }
+      // print('===================${last}');
+      // print('===================${_list_number}');
+      // print('===================${_list_operand}');
+      // print('===================${_list}');
+      // print('===================${_buffer}');
+      // print('?????????????????????????????');
     } else {
       _buffer += letter;
       _list.add(letter);

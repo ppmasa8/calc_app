@@ -81,12 +81,14 @@ class Calculator {
     } catch(e) {
       _list_number.clear();
       _list_operand.clear();
+      _list.clear();
       _buffer = '';
       return '';
     }
 
     _list_number.clear();
     _list_operand.clear();
+    _list.clear();
     _buffer = '';
 
     if (_result == _result.toInt())

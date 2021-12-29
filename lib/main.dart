@@ -63,8 +63,43 @@ class _TextFiledState extends State<TextField> {
         controller.sink.add(answer);
       } else if (letter == 'e') {
         _expression = 'Error';
-      } else
+      } else {
         _expression += letter;
+        _expression = _expression.replaceAll(',', '');
+        var splitList     = _expression.split('');
+        var numAndOpSplit = [];
+        var resList = [];
+        var str = '';
+        splitList.forEach((element) {
+          if (operand.contains(element)) {
+            numAndOpSplit.add(str);
+            numAndOpSplit.add(element);
+            str = '';
+          } else {
+            str += element;
+          }
+        });
+        numAndOpSplit.add(str);
+
+        numAndOpSplit.forEach((element) {
+          if (operand.contains(element)) {
+            resList.add(element);
+          } else {
+            if (element.contains('.')) {
+              var upper   = double.parse(element).floor();
+              var downer  = double.parse(element) - upper;
+              var uppers  = upper.toString();
+              var downers = downer.toString();
+              uppers = addComma(uppers);
+              element = uppers + downers.substring(1, downers.length);
+            } else {
+              element = addComma(element);
+            }
+            resList.add(element);
+          }
+        });
+        _expression = resList.join();
+      }
     });
   }
 

@@ -4,8 +4,7 @@ class Calculator {
   static var _list_number  = [];
   static var _list_operand = [];
   static var _list         = [];
-
-  static var _buffer = '';
+  static var _buffer       = '';
 
   static void GetKey(String letter) {
     letter = letter.replaceAll(',', '');
@@ -85,7 +84,6 @@ class Calculator {
       _buffer = '';
       return '';
     }
-
 
     _list_number.clear();
     _list_operand.clear();

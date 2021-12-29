@@ -41,12 +41,12 @@ class Calculator {
         str = str.split('').reversed.join('');
         _buffer = str;
       }
-      print('===================${last}');
-      print('===================${_list_number}');
-      print('===================${_list_operand}');
-      print('===================${_list}');
-      print('===================${_buffer}');
-      print('?????????????????????????????');
+      // print('===================${last}');
+      // print('===================${_list_number}');
+      // print('===================${_list_operand}');
+      // print('===================${_list}');
+      // print('===================${_buffer}');
+      // print('?????????????????????????????');
     } else {
       _buffer += letter;
       _list.add(letter);

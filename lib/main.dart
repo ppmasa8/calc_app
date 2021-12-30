@@ -50,9 +50,8 @@ class _TextFiledState extends State<TextField> {
         if (integer.hasMatch(result)) {
           if (result.contains('.')) {
             var num     = double.parse(result);
-            var uppers  = num.floor().toString();
-            var downers = num.toString().split(".");
-            answer = addComma(uppers) + "." + downers[1];
+            var split   = num.toString().split("");
+            answer = addComma(split[0]) + "." + split[1];
           } else {
             answer = addComma(result);
           }
@@ -87,12 +86,11 @@ class _TextFiledState extends State<TextField> {
           } else {
             if (element.contains('.')) {
               var num     = double.parse(element);
-              var uppers  = num.floor().toString();
-              var downers = num.toString().split(".");
+              var split   = num.toString().split(".");
               if (letter == ".") {
-                element = addComma(uppers) + ".";
+                element = addComma(split[0]) + ".";
               } else {
-                element = addComma(uppers) + "." + downers[1];
+                element = addComma(split[0]) + "." + split[1];
               }
             } else {
               element = addComma(element);

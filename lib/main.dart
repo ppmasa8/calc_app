@@ -127,7 +127,7 @@ class _TextFiledState extends State<TextField> {
            child: Text(
              _expression,
              style: GoogleFonts.openSansCondensed(
-                 fontSize: 64.0
+                 fontSize: _expression.length < 18 ? 64.0 : _expression.length < 26 ? 44.0 : 34.0
              ),
            ),
          ),

@@ -42,6 +42,43 @@ class _TextFiledState extends State<TextField> {
           _expression = _expression.substring(0, _expression.length - 3);
         else
           _expression = _expression.substring(0, _expression.length - 1);
+
+        // 数字にコンマをつける処理
+        _expression = _expression.replaceAll(',', '');
+        var splitList     = _expression.split('');
+        var numAndOpSplit = [];
+        var resList = [];
+        var str = '';
+        splitList.forEach((element) {
+          if (operand.contains(element)) {
+            numAndOpSplit.add(str);
+            numAndOpSplit.add(element);
+            str = '';
+          } else {
+            str += element;
+          }
+        });
+        numAndOpSplit.add(str);
+
+        numAndOpSplit.forEach((element) {
+          if (operand.contains(element)) {
+            resList.add(element);
+          } else {
+            if (element.contains('.')) {
+              var num     = double.parse(element);
+              var split   = num.toString().split(".");
+              if (letter == ".") {
+                element = addComma(split[0]) + ".";
+              } else {
+                element = addComma(split[0]) + "." + split[1];
+              }
+            } else {
+              element = addComma(element);
+            }
+            resList.add(element);
+          }
+        });
+        _expression = resList.join();
       } else if (letter == '=') {
         _expression = '';
         var result = Calculator.Execute();

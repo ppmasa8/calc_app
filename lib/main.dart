@@ -155,7 +155,7 @@ class _TextFiledState extends State<TextField> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        flex: 1,
+        flex: 4,
         child: Container(
          child: Align(
            alignment: Alignment.centerRight,
@@ -183,7 +183,7 @@ class Keyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 2,
+      flex: 9,
       child: Center(
         child: Container(
           color: Colors.cyan.shade50,

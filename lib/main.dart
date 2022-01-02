@@ -35,6 +35,12 @@ class _TextFiledState extends State<TextField> {
 
   void _UpdateText(String letter) {
     setState(() {
+      // 3文字だと都合が悪いので1文字に圧縮
+      if (letter == 'mod') {
+        letter = '%';
+      }
+      _expression = _expression.replaceAll('mod', '%');
+
       if (letter == 'C') {
         _expression = '';
       } else if (letter == '◀') {
@@ -137,6 +143,8 @@ class _TextFiledState extends State<TextField> {
         });
         _expression = resList.join();
       }
+      // 圧縮した文字をもとに戻す
+      _expression = _expression.replaceAll('%', 'mod');
     });
   }
 

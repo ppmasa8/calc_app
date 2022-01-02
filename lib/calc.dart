@@ -1,4 +1,4 @@
-const operand = ['+', '-', '×', '÷', 'mod'];
+const operand = ['+', '-', '×', '÷', 'mod', "%"];
 
 class Calculator {
   static var _list_number  = [];

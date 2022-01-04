@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.calc_app">
    <application
-        android:label="Calculator"
+        android:label="Simple Calculator"
         android:icon="@mipmap/calculator_icon">
         <activity
             android:name=".MainActivity"
@@ -37,5 +37,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9085522828855425~5834773895"/>
     </application>
 </manifest>

@@ -1,15 +1,50 @@
+// @dart=2.9
+
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'calc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   runApp(MyApp());
 }
 
+// advertisement
+String getTestAdBannerUnitId(){
+  String testBannerUnitId = "";
+  if(Platform.isAndroid) {
+    // Android
+    testBannerUnitId = "ca-app-pub-9085522828855425/3017038868";
+  } else if(Platform.isIOS) {
+    // iOS
+    testBannerUnitId = "ca-app-pub-3940256099942544/2934735716";
+  }
+  return testBannerUnitId;
+}
+
 class MyApp extends StatelessWidget {
+  final BannerAd myBanner = BannerAd(
+    adUnitId: getTestAdBannerUnitId(),
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: AdListener(),
+  );
+
   @override
   Widget build(BuildContext context) {
+    myBanner.load();
+    final AdWidget adWidget = AdWidget(ad: myBanner);
+
+    final Container adContainer = Container(
+      alignment: Alignment.center,
+      child: adWidget,
+      width: myBanner.size.width.toDouble(),
+      height: myBanner.size.height.toDouble(),
+    );
     return MaterialApp(
         home: Scaffold(
             body: Column(
@@ -17,6 +52,7 @@ class MyApp extends StatelessWidget {
               children: [
                 TextField(),
                 Keyboard(),
+                adContainer,
               ],
             )
         )

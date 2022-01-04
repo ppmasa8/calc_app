@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
       height: myBanner.size.height.toDouble(),
     );
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             body: Column(
               mainAxisAlignment: MainAxisAlignment.start,

@@ -85,51 +85,14 @@ class _TextFiledState extends State<TextField> {
           _expression = _expression.substring(0, _expression.length - 3);
         else
           _expression = _expression.substring(0, _expression.length - 1);
-
-        // 数字にコンマをつける処理
-        _expression = _expression.replaceAll(',', '');
-        var splitList     = _expression.split('');
-        var numAndOpSplit = [];
-        var resList = [];
-        var str = '';
-        splitList.forEach((element) {
-          if (operand.contains(element)) {
-            numAndOpSplit.add(str);
-            numAndOpSplit.add(element);
-            str = '';
-          } else {
-            str += element;
-          }
-        });
-        numAndOpSplit.add(str);
-
-        numAndOpSplit.forEach((element) {
-          if (operand.contains(element)) {
-            resList.add(element);
-          } else {
-            if (element.contains('.')) {
-              var num     = double.parse(element);
-              var split   = num.toString().split(".");
-              if (letter == ".") {
-                element = addComma(split[0]) + ".";
-              } else {
-                element = addComma(split[0]) + "." + split[1];
-              }
-            } else {
-              element = addComma(element);
-            }
-            resList.add(element);
-          }
-        });
-        _expression = resList.join();
       } else if (letter == '=') {
         _expression = '';
         var result = Calculator.Execute();
         // 計算結果にコンマをつける処理
         var answer = '';
-        if (integer.hasMatch(result)) {
+        var num    = double.parse(result);
+        if (num >= 1000) {
           if (result.contains('.')) {
-            var num     = double.parse(result);
             var split   = num.toString().split("");
             answer = addComma(split[0]) + "." + split[1];
           } else {
@@ -143,43 +106,53 @@ class _TextFiledState extends State<TextField> {
         _expression = 'Error';
       } else {
         _expression += letter;
-        // 数字にコンマをつける処理
-        _expression = _expression.replaceAll(',', '');
-        var splitList     = _expression.split('');
-        var numAndOpSplit = [];
-        var resList = [];
-        var str = '';
-        splitList.forEach((element) {
-          if (operand.contains(element)) {
-            numAndOpSplit.add(str);
-            numAndOpSplit.add(element);
-            str = '';
-          } else {
-            str += element;
-          }
-        });
-        numAndOpSplit.add(str);
-
-        numAndOpSplit.forEach((element) {
-          if (operand.contains(element)) {
-            resList.add(element);
-          } else {
-            if (element.contains('.')) {
-              var num     = double.parse(element);
-              var split   = num.toString().split(".");
-              if (letter == ".") {
-                element = addComma(split[0]) + ".";
-              } else {
-                element = addComma(split[0]) + "." + split[1];
-              }
-            } else {
-              element = addComma(element);
-            }
-            resList.add(element);
-          }
-        });
-        _expression = resList.join();
       }
+      // 数字にコンマをつける処理
+      _expression = _expression.replaceAll(',', '');
+      var splitList     = _expression.split('');
+      var numAndOpSplit = [];
+      var resList = [];
+      var str = '';
+      splitList.forEach((element) {
+        if (operand.contains(element)) {
+          numAndOpSplit.add(str);
+          numAndOpSplit.add(element);
+          str = '';
+        } else {
+          str += element;
+        }
+      });
+      numAndOpSplit.add(str);
+
+      if (letter == ".") {
+        var tmp = numAndOpSplit[numAndOpSplit.length - 1];
+        numAndOpSplit.removeLast();
+        tmp = double.parse(tmp);
+        tmp = tmp.toString().split(".");
+        numAndOpSplit.add(tmp[0] + ".");
+      }
+
+      numAndOpSplit.forEach((element) {
+        if (operand.contains(element)) {
+          resList.add(element);
+        } else {
+          if (element.contains('.') && element[element.length - 1] != ".") {
+            var num     = double.parse(element);
+            var split   = num.toString().split(".");
+            element = addComma(split[0]) + "." + split[1];
+            if (letter == "0") {
+              element += "0";
+            } else if (letter == "00") {
+              element += "00";
+            }
+          } else if (!element.contains('.')) {
+            element = addComma(element);
+          }
+          resList.add(element);
+        }
+      });
+      _expression = resList.join();
+
       // 圧縮した文字をもとに戻す
       _expression = _expression.replaceAll('%', 'mod');
     });
@@ -271,7 +244,7 @@ class Button extends StatelessWidget {
           child: Text(
             _key,
             style: GoogleFonts.anaheim(
-                fontSize: 46,
+                fontSize: 40,
                 color: symbol.contains(_key) ? Colors.cyan : Colors.black
             ),
           ),

@@ -45,6 +45,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-./assets/
+/assets/
 /android/app/key.properties
 /android/app/build/

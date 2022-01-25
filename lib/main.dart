@@ -90,10 +90,9 @@ class _TextFiledState extends State<TextField> {
         var result = Calculator.Execute();
         // 計算結果にコンマをつける処理
         var answer = '';
-        var num    = double.parse(result);
-        if (num >= 1000) {
+        var split  = result.split(".");
+        if (split[0].length >= 4) {
           if (result.contains('.')) {
-            var split   = num.toString().split("");
             answer = addComma(split[0]) + "." + split[1];
           } else {
             answer = addComma(result);
@@ -127,8 +126,7 @@ class _TextFiledState extends State<TextField> {
       if (letter == ".") {
         var tmp = numAndOpSplit[numAndOpSplit.length - 1];
         numAndOpSplit.removeLast();
-        tmp = double.parse(tmp);
-        tmp = tmp.toString().split(".");
+        tmp = tmp.split(".");
         numAndOpSplit.add(tmp[0] + ".");
       }
 
@@ -137,14 +135,8 @@ class _TextFiledState extends State<TextField> {
           resList.add(element);
         } else {
           if (element.contains('.') && element[element.length - 1] != ".") {
-            var num     = double.parse(element);
-            var split   = num.toString().split(".");
+            var split = element.split(".");
             element = addComma(split[0]) + "." + split[1];
-            if (letter == "0") {
-              element += "0";
-            } else if (letter == "00") {
-              element += "00";
-            }
           } else if (!element.contains('.')) {
             element = addComma(element);
           }

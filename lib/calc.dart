@@ -1,3 +1,5 @@
+import 'package:decimal/decimal.dart';
+
 const operand = ['+', '-', '×', '÷', 'mod', "%"];
 
 class Calculator {
@@ -10,7 +12,7 @@ class Calculator {
     letter = letter.replaceAll(',', '');
     if (operand.contains(letter)) {
       _list_operand.add(letter);
-      _list_number.add(double.parse(_buffer));
+      _list_number.add(Decimal.parse(_buffer));
       _buffer = '';
       _list.add(letter);
     } else if (letter == 'C') {
@@ -25,7 +27,7 @@ class Calculator {
       if (operand.contains(last)) {
         _list.removeLast();
         _list_operand.removeLast();
-        _buffer = _list_number.removeLast().toString();
+        _buffer = _list_number.removeLast();
       } else {
         _list.removeLast();
         var revList = _list.reversed;
@@ -47,9 +49,9 @@ class Calculator {
   }
 
   static String Execute() {
-    var _result = 0.0;
+    var _result = Decimal.parse('0.0');
     try {
-      _list_number.add(double.parse(_buffer));
+      _list_number.add(Decimal.parse(_buffer));
 
       if (_list_number.length == 0)
         return '0';
@@ -64,7 +66,7 @@ class Calculator {
         else if (_list_operand[i] == '×')
           _result *= _list_number[0];
         else if (_list_operand[i] == '÷')
-          _result /= _list_number[0];
+          _result = (_result / _list_number[0]).floor() as Decimal;
         else if (_list_operand[i] == 'mod')
           _result %= _list_number[0];
         else
@@ -85,9 +87,6 @@ class Calculator {
     _list.clear();
     _buffer = '';
 
-    if (_result == _result.toInt())
-      return _result.toInt().toString();
-    else
-      return _result.toString();
+    return _result.toString();
   }
 }

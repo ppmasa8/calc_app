@@ -56,7 +56,7 @@ class Calculator {
       if (_list_number.length == 0)
         return '0';
 
-      _result += _list_number[0];
+      _result = _list_number[0];
       _list_number.removeAt(0);
       for (int i = 0; i < _list_operand.length; i++) {
         if (_list_operand[i] == '+')
@@ -66,7 +66,7 @@ class Calculator {
         else if (_list_operand[i] == '×')
           _result *= _list_number[0];
         else if (_list_operand[i] == '÷')
-          _result = (_result / _list_number[0]).floor() as Decimal;
+          _result = (_result / _list_number[0]).toDecimal(scaleOnInfinitePrecision: 17);
         else if (_list_operand[i] == 'mod')
           _result %= _list_number[0];
         else

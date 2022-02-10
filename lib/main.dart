@@ -72,7 +72,7 @@ class _TextFiledState extends State<TextField> {
 
   void _UpdateText(String letter) {
     setState(() {
-      // 3文字だと都合が悪いので1文字に圧縮
+      // Compressed to 1 character because 3 characters is inconvenient
       if (letter == 'mod') {
         letter = '%';
       }
@@ -88,7 +88,7 @@ class _TextFiledState extends State<TextField> {
       } else if (letter == '=') {
         _expression = '';
         var result = Calculator.Execute();
-        // 計算結果にコンマをつける処理
+        // Processing to add a comma to the calculation result
         var answer = '';
         var split  = result.split(".");
         if (split[0].length >= 4) {
@@ -106,7 +106,7 @@ class _TextFiledState extends State<TextField> {
       } else {
         _expression += letter;
       }
-      // 数字にコンマをつける処理
+      // Process of adding a comma to a number
       _expression = _expression.replaceAll(',', '');
       var splitList     = _expression.split('');
       var numAndOpSplit = [];
@@ -145,7 +145,7 @@ class _TextFiledState extends State<TextField> {
       });
       _expression = resList.join();
 
-      // 圧縮した文字をもとに戻す
+      // Restore the compressed text
       _expression = _expression.replaceAll('%', 'mod');
     });
   }

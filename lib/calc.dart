@@ -3,10 +3,10 @@ import 'package:decimal/decimal.dart';
 const operand = ['+', '-', '×', '÷', 'mod', "%"];
 
 class Calculator {
-  static var _list_number  = [];
+  static var _list_number = [];
   static var _list_operand = [];
-  static var _list         = [];
-  static var _buffer       = '';
+  static var _list = [];
+  static var _buffer = '';
 
   static void GetKey(String letter) {
     letter = letter.replaceAll(',', '');
@@ -53,8 +53,7 @@ class Calculator {
     try {
       _list_number.add(Decimal.parse(_buffer));
 
-      if (_list_number.length == 0)
-        return '0';
+      if (_list_number.length == 0) return '0';
 
       _result = _list_number[0];
       _list_number.removeAt(0);
@@ -66,7 +65,8 @@ class Calculator {
         else if (_list_operand[i] == '×')
           _result *= _list_number[0];
         else if (_list_operand[i] == '÷')
-          _result = (_result / _list_number[0]).toDecimal(scaleOnInfinitePrecision: 17);
+          _result = (_result / _list_number[0])
+              .toDecimal(scaleOnInfinitePrecision: 17);
         else if (_list_operand[i] == 'mod')
           _result %= _list_number[0];
         else
@@ -74,7 +74,7 @@ class Calculator {
 
         _list_number.removeAt(0);
       }
-    } catch(e) {
+    } catch (e) {
       _list_number.clear();
       _list_operand.clear();
       _list.clear();

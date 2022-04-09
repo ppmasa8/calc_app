@@ -14,12 +14,12 @@ void main() {
 }
 
 // advertisement
-String getTestAdBannerUnitId(){
+String getTestAdBannerUnitId() {
   String testBannerUnitId = "";
-  if(Platform.isAndroid) {
+  if (Platform.isAndroid) {
     // Android
     testBannerUnitId = "ca-app-pub-9085522828855425/3017038868";
-  } else if(Platform.isIOS) {
+  } else if (Platform.isIOS) {
     // iOS
     testBannerUnitId = "ca-app-pub-3940256099942544/2934735716";
   }
@@ -49,15 +49,13 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             body: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                TextField(),
-                Keyboard(),
-                adContainer,
-              ],
-            )
-        )
-    );
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            TextField(),
+            Keyboard(),
+            adContainer,
+          ],
+        )));
   }
 }
 
@@ -90,7 +88,7 @@ class _TextFiledState extends State<TextField> {
         var result = Calculator.Execute();
         // Processing to add a comma to the calculation result
         var answer = '';
-        var split  = result.split(".");
+        var split = result.split(".");
         if (split[0].length >= 4) {
           if (result.contains('.')) {
             answer = addComma(split[0]) + "." + split[1];
@@ -108,7 +106,7 @@ class _TextFiledState extends State<TextField> {
       }
       // Process of adding a comma to a number
       _expression = _expression.replaceAll(',', '');
-      var splitList     = _expression.split('');
+      var splitList = _expression.split('');
       var numAndOpSplit = [];
       var resList = [];
       var str = '';
@@ -167,17 +165,19 @@ class _TextFiledState extends State<TextField> {
     return Expanded(
         flex: 4,
         child: Container(
-         child: Align(
-           alignment: Alignment.centerRight,
-           child: Text(
-             _expression,
-             style: GoogleFonts.openSansCondensed(
-                 fontSize: _expression.length < 17 ? 64.0 : _expression.length < 25 ? 44.0 : 34.0
-             ),
-           ),
-         ),
-        )
-    );
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              _expression,
+              style: GoogleFonts.openSansCondensed(
+                  fontSize: _expression.length < 17
+                      ? 64.0
+                      : _expression.length < 25
+                          ? 44.0
+                          : 34.0),
+            ),
+          ),
+        ));
   }
 
   static final controller = StreamController.broadcast();
@@ -198,20 +198,35 @@ class Keyboard extends StatelessWidget {
         child: Container(
           color: Colors.cyan.shade50,
           child: GridView.count(
-              crossAxisCount: 4,
-              mainAxisSpacing: 3,
-              crossAxisSpacing: 3,
-              children: [
-                'C', 'mod', '◀', '÷',
-                '7', '8', '9', '×',
-                '4', '5', '6', '-',
-                '1', '2', '3', '+',
-                '00', '0', '.', '='
-              ].map((key) {
-                return GridTile(
-                    child: Button(key),
-                );
-              }).toList(),
+            crossAxisCount: 4,
+            mainAxisSpacing: 3,
+            crossAxisSpacing: 3,
+            children: [
+              'C',
+              'mod',
+              '◀',
+              '÷',
+              '7',
+              '8',
+              '9',
+              '×',
+              '4',
+              '5',
+              '6',
+              '-',
+              '1',
+              '2',
+              '3',
+              '+',
+              '00',
+              '0',
+              '.',
+              '='
+            ].map((key) {
+              return GridTile(
+                child: Button(key),
+              );
+            }).toList(),
           ),
         ),
       ),
@@ -221,6 +236,7 @@ class Keyboard extends StatelessWidget {
 
 // Button
 const symbol = ['+', '-', '×', '÷', 'mod', 'C', '=', '◀'];
+
 class Button extends StatelessWidget {
   final _key;
   Button(this._key);
@@ -237,8 +253,7 @@ class Button extends StatelessWidget {
             _key,
             style: GoogleFonts.anaheim(
                 fontSize: 40,
-                color: symbol.contains(_key) ? Colors.cyan : Colors.black
-            ),
+                color: symbol.contains(_key) ? Colors.cyan : Colors.black),
           ),
         ),
       ),

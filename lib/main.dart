@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -31,7 +29,7 @@ class MyApp extends StatelessWidget {
     adUnitId: getTestAdBannerUnitId(),
     size: AdSize.banner,
     request: AdRequest(),
-    listener: AdListener(),
+    listener: BannerAdListener(),
   );
 
   @override

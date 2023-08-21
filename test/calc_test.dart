@@ -85,7 +85,7 @@ void main() {
     Calculator.GetKey(num2);
     Calculator.GetKey('÷');
     Calculator.GetKey('1');
-    // Remove 1 character
+    // Remove 1 char
     Calculator.GetKey('◀');
     Calculator.GetKey(num4);
     Calculator.GetKey('mod');

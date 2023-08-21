@@ -3,4 +3,4 @@
 This application is a calculator application.
 Therefore, it does not use any personal information and is not responsible for any personal information.
 
-App https://play.google.com/store/apps/details?id=com.chatram.calc_app
+Application: https://play.google.com/store/apps/details?id=com.chatram.calc_app
